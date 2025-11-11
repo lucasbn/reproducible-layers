@@ -7,6 +7,9 @@ build_and_inspect() {
     # Create a fresh builder with specific configuration
     docker buildx create --use --name mybuilder --driver docker-container --config /dev/null
 
+    # Apply fixed timestamps to all files to ensure reproducibility
+    find . -type f -exec touch -t 200001010000 {} +
+
     # Set multiple environment variables for reproducibility
     docker buildx build \
         --no-cache \
@@ -30,6 +33,8 @@ build_and_inspect() {
 build_and_inspect
 
 sleep 5
+touch pixi.toml
+touch pixi.lock
 
 # Second run
 build_and_inspect
