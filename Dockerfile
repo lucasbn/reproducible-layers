@@ -2,16 +2,13 @@
 FROM ubuntu:24.04
 
 # Set reproducible environment variables
-ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=UTC
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
+ENV SOURCE_DATE_EPOCH=0
 
 # Create directory with consistent permissions
-RUN mkdir -p /app && chmod 755 /app
+RUN mkdir -p /app && \
+    chmod 644 /app && \
+    chown root:root /app && \
+    find /app -exec touch -h -d "@${SOURCE_DATE_EPOCH}" {} +
 
 # Copy with explicit ownership and permissions
-COPY --chown=root:root --chmod=644 test.txt /app/test.txt
-
-# Set consistent working directory
-WORKDIR /app
+COPY --chown=root:root --chmod=644 test.txt test.txt

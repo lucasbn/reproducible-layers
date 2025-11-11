@@ -1,0 +1,10 @@
+[workspace]
+authors = ["Lucas Graeff Buhl-Nielsen"]
+channels = ["conda-forge"]
+name = "reproducible-layers"
+platforms = ["osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
