@@ -1,0 +1,15 @@
+# Ignore version control
+.git
+.gitignore
+
+# Ignore build artifacts
+*.log
+*.tmp
+.DS_Store
+
+# Ignore IDE files
+.vscode
+.idea
+
+# Only include explicitly needed files
+# This ensures consistent build context
